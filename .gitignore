@@ -11,3 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Hide shame
+.byebug_history
+
+# Ignore JS
+node_modules
+bundle.js*
