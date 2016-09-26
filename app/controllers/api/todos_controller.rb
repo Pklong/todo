@@ -1,4 +1,4 @@
-class API::TodosController < ApplicationController
+class Api::TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
 
@@ -6,6 +6,7 @@ class API::TodosController < ApplicationController
       render json: @todo
     else
       render json: @todo.errors.full_messages, status: 422
+    end
   end
 
   def destroy
