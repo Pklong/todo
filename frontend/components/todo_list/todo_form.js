@@ -34,12 +34,13 @@ class TodoForm extends React.Component {
           onChange={this.onTitleChange}
           value={this.state.title}
         />
+        <br />
         <textarea
           placeholder={'What needs doing?'}
           onChange={this.onBodyChange}
           value={this.state.body}
         ></textarea>
-
+        <br />
         <button>Create Todo</button>
       </form>
     );

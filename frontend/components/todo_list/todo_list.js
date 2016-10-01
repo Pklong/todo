@@ -7,8 +7,16 @@ class TodoList extends React.Component {
     this.props.requestTodos();
   }
   render() {
-    const lis = this.props.todos.map(t => (
-      <TodoListItem key={t.id} title={t.title} />
+    const { toggleTodo, destroyTodo, createTodo, todos } = this.props;
+
+    const lis = todos.map(t => (
+      <TodoListItem
+        key={t.id}
+        title={t.title}
+        status={t.done}
+        toggleTodo={toggleTodo.bind(null, t)}
+        destroyTodo={destroyTodo.bind(null, t)}
+      />
       )
     );
     return (
@@ -16,7 +24,9 @@ class TodoList extends React.Component {
         <ul>
           {lis}
         </ul>
-        <TodoForm createTodo={this.props.createTodo} />
+        <TodoForm
+          createTodo={createTodo}
+        />
       </div>
     );
   }
