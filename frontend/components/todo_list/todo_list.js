@@ -7,15 +7,13 @@ class TodoList extends React.Component {
     this.props.requestTodos();
   }
   render() {
-    const { toggleTodo, destroyTodo, createTodo, todos } = this.props;
+    const { toggleTodo, createTodo, todos } = this.props;
 
     const lis = todos.map(t => (
       <TodoListItem
         key={t.id}
-        title={t.title}
-        status={t.done}
+        todo={t}
         toggleTodo={toggleTodo.bind(null, t)}
-        destroyTodo={destroyTodo.bind(null, t)}
       />
       )
     );
