@@ -3,7 +3,6 @@ export const RECEIVE_TODOS = 'RECEIVE_TODOS';
 
 export const CREATE_TODO = 'CREATE_TODO';
 export const RECEIVE_TODO = 'RECEIVE_TODO';
-export const UPDATE_TODO = 'UPDATE_TODO';
 
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const DESTROY_TODO = 'DESTROY_TODO';
@@ -34,7 +33,7 @@ export const createTodo = (todo) => ({
 });
 
 export const toggleTodo = (todo) => ({
-  type: UPDATE_TODO,
+  type: TOGGLE_TODO,
   todo,
 });
 

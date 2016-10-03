@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { destroyTodo } from '../../actions/todo_actions';
+import { requestSteps } from '../../actions/step_actions';
 
 const TodoDetailView = ({ todo, destroyTodo }) => (
   <div>
@@ -13,6 +14,7 @@ const TodoDetailView = ({ todo, destroyTodo }) => (
 
 const mapDispatchToProps = dispatch => ({
   destroyTodo: (t) => dispatch(destroyTodo(t)),
+  requestSteps: () => dispatch(requestSteps()),
 });
 
 export default connect(null, mapDispatchToProps)(TodoDetailView);

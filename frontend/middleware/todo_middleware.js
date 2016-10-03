@@ -1,6 +1,6 @@
 import { REQUEST_TODOS,
          CREATE_TODO,
-         UPDATE_TODO,
+         TOGGLE_TODO,
          DESTROY_TODO,
          receiveTodos,
          receiveTodo,
@@ -28,7 +28,7 @@ const middleware = store => next => action => {
       createTodo(todo, success, error);
       break;
     }
-    case UPDATE_TODO: {
+    case TOGGLE_TODO: {
       const success = t => store.dispatch(receiveTodo(t));
       const error = e => console.error(e);
       updateTodo(action.todo, success, error);
