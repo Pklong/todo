@@ -5,4 +5,6 @@ const stepsReducer = (state = {}, action) => {
   }
 };
 
+export const allSteps = (state) => Object.keys(state.steps).map(s => state.steps[s]);
+
 export default stepsReducer;

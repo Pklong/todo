@@ -1,4 +1,9 @@
-import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from '../actions/todo_actions';
+import {
+  RECEIVE_TODOS,
+  RECEIVE_TODO,
+  REMOVE_TODO,
+} from '../actions/todo_actions';
+
 import merge from 'lodash/merge';
 
 const defaultState = {
@@ -56,5 +61,6 @@ const todos = (state = defaultState, action) => {
   }
 };
 
+export const allTodos = (state) => Object.keys(state.todos).map(t => state.todos[t]);
 
 export default todos;
