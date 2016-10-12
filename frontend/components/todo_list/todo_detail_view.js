@@ -3,18 +3,36 @@ import { connect } from 'react-redux';
 import { destroyTodo } from '../../actions/todo_actions';
 import { requestSteps } from '../../actions/step_actions';
 
-const TodoDetailView = ({ todo, destroyTodo }) => (
-  <div>
-    <p>{todo.body}</p>
-    <button onClick={destroyTodo.bind(null, todo)}>
-      Delete Todo
-    </button>
-  </div>
-);
+import StepList from '../step_list/step_list';
+
+class TodoDetailView extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestSteps(this.props.todo.id);
+  }
+
+  render() {
+    const { destroyTodo, todo } = this.props;
+    return (
+      <div>
+        <p>{todo.body}</p>
+        <StepList
+          todoId={todo.id}
+        />
+        <button onClick={destroyTodo.bind(null, todo)}>
+          Delete Todo
+        </button>
+      </div>
+    );
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   destroyTodo: (t) => dispatch(destroyTodo(t)),
-  requestSteps: () => dispatch(requestSteps()),
+  requestSteps: (id) => dispatch(requestSteps(id)),
 });
 
 export default connect(null, mapDispatchToProps)(TodoDetailView);

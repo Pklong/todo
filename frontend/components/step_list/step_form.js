@@ -10,7 +10,13 @@ class StepForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
+    const step = {
+      title: this.state.body,
+      todoId: this.props.todoId,
+      done: false,
+    };
+    this.props.createStep(step);
+    this.setState({ body: '' });
   }
 
   render() {

@@ -7,8 +7,9 @@ export const RECEIVE_STEP = 'RECEIVE_STEP';
 export const TOGGLE_STEP = 'TOGGLE_STEP';
 export const DESTROY_STEP = 'DESTROY_STEP';
 
-export const requestSteps = () => ({
+export const requestSteps = (todoId) => ({
   type: REQUEST_STEPS,
+  todoId,
 });
 
 export const receiveSteps = (steps) => ({

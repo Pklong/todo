@@ -18,7 +18,7 @@ const middleware = store => next => action => {
     case REQUEST_STEPS: {
       const success = data => store.dispatch(receiveSteps(data));
       const error = e => console.error(e);
-      fetchSteps(success, error);
+      fetchSteps(action.todoId, success, error);
       break;
     }
     case CREATE_STEP: {
