@@ -10,3 +10,7 @@ Step.destroy_all
 s1 = t1.steps.create!(title: "go to the store", done: true)
 s2 = t1.steps.create!(title: "find 2%", done: true)
 s3 = t1.steps.create!(title: "pay cashier", done: false)
+
+s4 = t2.steps.create!(title: "open door", done: false)
+s5 = t2.steps.create!(title: "grab keys", done: false)
+s6 = t2.steps.create!(title: "visit park", done: false)
