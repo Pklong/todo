@@ -10,12 +10,12 @@ class StepForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { todoId, createStep } = this.props;
     const step = {
       title: this.state.body,
-      todoId: this.props.todoId,
-      done: false,
+      todoId,
     };
-    this.props.createStep(step);
+    createStep(step);
     this.setState({ body: '' });
   }
 
@@ -32,5 +32,10 @@ class StepForm extends React.Component {
     );
   }
 }
+
+StepForm.PropTypes = {
+  createStep: React.PropTypes.func,
+  todoId: React.PropTypes.number,
+};
 
 export default StepForm;

@@ -12,13 +12,13 @@ const defaultState = {
       id: 1,
       title: 'read the docs',
       done: false,
-      todoId: 1,
+      todo_id: 1,
     },
     2: {
       id: 2,
       title: 'code some apps',
       done: true,
-      todoId: 1,
+      todo_id: 1,
     },
   },
   2: {
@@ -26,7 +26,7 @@ const defaultState = {
       id: 3,
       title: 'put water in the pot',
       done: false,
-      todoId: 2,
+      todo_id: 2,
     },
   },
 };
@@ -48,9 +48,9 @@ const stepsReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_STEPS: {
-      const newState = {};
+      const newState = merge({}, state);
       action.steps.forEach(s => {
-        newState[s.id] = s;
+        newState[s.todo_id][s.id] = s;
       });
       return newState;
     }
@@ -72,12 +72,9 @@ const stepsReducer = (state = defaultState, action) => {
   }
 };
 
-export const todoSteps = (state, todoId) => {
-  const steps = state.steps[todoId];
-  if (steps) {
-    return Object.keys(state.steps[todoId]).map(s => state.steps[todoId][s]);
-  }
-  return [];
+export const todoSteps = (steps, todoId) => {
+  if (!steps[todoId]) return [];
+  return Object.keys(steps[todoId]).map(s => steps[todoId][s]);
 };
 
 export default stepsReducer;

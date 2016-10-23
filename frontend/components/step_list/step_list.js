@@ -9,10 +9,12 @@ const mapDispatchToProps = (dispatch) => ({
   createStep: (s) => dispatch(createStep(s)),
 });
 
-const mapStateToProps = (state, ownProps) => ({
-  steps: todoSteps(state, ownProps.todoId),
-  todoId: ownProps.todoId,
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    steps: todoSteps(state.steps, ownProps.todoId),
+    todoId: ownProps.todoId,
+  };
+};
 
 const StepList = ({ createStep, steps, todoId }) => {
   const mySteps = steps.map(s =>
@@ -31,5 +33,11 @@ const StepList = ({ createStep, steps, todoId }) => {
   );
 };
 
+StepList.PropTypes = {
+  createStep: React.PropTypes.func,
+  steps: React.PropTypes.array,
+  todoId: React.PropTypes.number,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(StepList)
+
+export default connect(mapStateToProps, mapDispatchToProps)(StepList);

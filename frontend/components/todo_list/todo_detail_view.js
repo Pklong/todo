@@ -11,7 +11,8 @@ class TodoDetailView extends React.Component {
   }
 
   componentDidMount() {
-    this.props.requestSteps(this.props.todo.id);
+    const { requestSteps, todo: { id } } = this.props;
+    requestSteps(id);
   }
 
   render() {
@@ -34,5 +35,11 @@ const mapDispatchToProps = dispatch => ({
   destroyTodo: (t) => dispatch(destroyTodo(t)),
   requestSteps: (id) => dispatch(requestSteps(id)),
 });
+
+TodoDetailView.PropTypes = {
+  destroyTodo: React.PropTypes.func,
+  todo: React.PropTypes.object,
+  requestSteps: React.PropTypes.func,
+};
 
 export default connect(null, mapDispatchToProps)(TodoDetailView);

@@ -12,3 +12,10 @@ const StepListItem = ({ title, destroyStep, toggleStep, done }) => (
 );
 
 export default connect(null, { destroyStep, toggleStep })(StepListItem);
+
+StepListItem.PropTypes = {
+  title: React.PropTypes.string,
+  destroyStep: React.PropTypes.func,
+  toggleStep: React.PropTypes.func,
+  done: React.PropTypes.bool,
+};
