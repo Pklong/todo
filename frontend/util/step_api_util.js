@@ -10,8 +10,8 @@ export const fetchSteps = (todoId, success, error) => {
 export const createStep = (step, success, error) => {
   $.ajax({
     method: 'post',
-    url: `api/todos/${step.todo_id}/steps`,
-    data: step,
+    url: `api/todos/${step.todoId}/steps`,
+    data: { step },
     success,
     error,
   });

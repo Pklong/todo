@@ -6,6 +6,7 @@ export const RECEIVE_STEP = 'RECEIVE_STEP';
 
 export const TOGGLE_STEP = 'TOGGLE_STEP';
 export const DESTROY_STEP = 'DESTROY_STEP';
+export const REMOVE_STEP = 'REMOVE_STEP';
 
 export const requestSteps = (todoId) => ({
   type: REQUEST_STEPS,
@@ -32,7 +33,11 @@ export const toggleStep = (step) => ({
   step,
 });
 
-export const destroyStep = (step) => ({
-  type: DESTROY_STEP,
+export const removeStep = (step) => ({
+  type: REMOVE_STEP,
   step,
+});
+export const destroyStep = (stepId) => ({
+  type: DESTROY_STEP,
+  stepId,
 });

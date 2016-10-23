@@ -6,7 +6,7 @@ import { createStep } from '../../actions/step_actions';
 import { todoSteps } from '../../reducers/steps_reducer';
 
 const mapDispatchToProps = (dispatch) => ({
-  createStep: (s) => dispatch(createStep(s)),
+  createStep: () => (s) => dispatch(createStep(s)),
 });
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const StepList = ({ createStep, steps, todoId }) => {
+
   const mySteps = steps.map(s =>
     <StepListItem {...s} key={s.id} />
   );
@@ -26,7 +27,7 @@ const StepList = ({ createStep, steps, todoId }) => {
         {mySteps}
       </ul>
       <StepForm
-        createStep={createStep}
+        createStep={createStep(todoId)}
         todoId={todoId}
       />
     </div>

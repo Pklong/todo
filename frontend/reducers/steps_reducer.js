@@ -6,18 +6,6 @@ import {
 
 import merge from 'lodash/merge';
 
-const step = (state = {}, action) => {
-  switch (action.type) {
-    case RECEIVE_STEP: {
-      const newStep = merge({}, action.step);
-      return newStep;
-    }
-
-    default:
-      return state;
-  }
-};
-
 const stepsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
@@ -34,13 +22,16 @@ const stepsReducer = (state = {}, action) => {
 
     case RECEIVE_STEP: {
       const newState = merge({}, state);
-      newState[action.step.id] = step(null, action);
+      const { todo_id: todoId, id: stepId } = action.step;
+      newState[todoId] = newState[todoId] || {};
+      newState[todoId][stepId] = action.step;
       return newState;
     }
 
     case REMOVE_STEP: {
+      const { todo_id: todoId, id: stepId } = action.step;
       const newState = merge({}, state);
-      delete newState[action.step.id];
+      delete newState[todoId][stepId];
       return newState;
     }
 

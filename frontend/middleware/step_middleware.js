@@ -19,26 +19,26 @@ const middleware = store => next => action => {
       const success = data => store.dispatch(receiveSteps(data));
       const error = e => console.error(e);
       fetchSteps(action.todoId, success, error);
-      break;
+      return next(action);
     }
     case CREATE_STEP: {
       const success = t => store.dispatch(receiveStep(t));
       const error = e => console.error(e);
       const step = action.step;
       createStep(step, success, error);
-      break;
+      return next(action);
     }
     case TOGGLE_STEP: {
       const success = t => store.dispatch(receiveStep(t));
       const error = e => console.error(e);
       updateStep(action.step, success, error);
-      break;
+      return next(action);
     }
     case DESTROY_STEP: {
       const success = t => store.dispatch(removeStep(t));
       const error = e => console.error(e);
-      destroyStep(action.step.id, success, error);
-      break;
+      destroyStep(action.stepId, success, error);
+      return next(action);
     }
     default:
       return next(action);
