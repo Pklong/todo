@@ -6,32 +6,6 @@ import {
 
 import merge from 'lodash/merge';
 
-const defaultState = {
-  1: {
-    1: {
-      id: 1,
-      title: 'read the docs',
-      done: false,
-      todo_id: 1,
-    },
-    2: {
-      id: 2,
-      title: 'code some apps',
-      done: true,
-      todo_id: 1,
-    },
-  },
-  2: {
-    3: {
-      id: 3,
-      title: 'put water in the pot',
-      done: false,
-      todo_id: 2,
-    },
-  },
-};
-
-
 const step = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_STEP: {
@@ -44,13 +18,16 @@ const step = (state = {}, action) => {
   }
 };
 
-const stepsReducer = (state = defaultState, action) => {
+const stepsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_STEPS: {
+      const { steps } = action;
       const newState = merge({}, state);
-      action.steps.forEach(s => {
-        newState[s.todo_id][s.id] = s;
+      steps.forEach(s => {
+        const { todo_id: todoId, id: stepId } = s;
+        newState[todoId] = newState[todoId] || {};
+        newState[todoId][stepId] = s;
       });
       return newState;
     }
