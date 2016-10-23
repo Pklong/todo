@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const StepList = ({ createStep, steps, todoId }) => {
 
   const mySteps = steps.map(s =>
-    <StepListItem {...s} key={s.id} />
+    <StepListItem step={s} key={s.id} />
   );
   return (
     <div>

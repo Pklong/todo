@@ -29,6 +29,7 @@ const middleware = store => next => action => {
       return next(action);
     }
     case TOGGLE_STEP: {
+
       const success = t => store.dispatch(receiveStep(t));
       const error = e => console.error(e);
       updateStep(action.step, success, error);

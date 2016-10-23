@@ -18,6 +18,7 @@ export const createStep = (step, success, error) => {
 };
 
 export const updateStep = (step, success, error) => {
+
   $.ajax({
     method: 'patch',
     url: `api/steps/${step.id}`,
