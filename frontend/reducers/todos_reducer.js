@@ -33,7 +33,7 @@ const todo = (state = {}, action) => {
   }
 };
 
-const todos = (state = defaultState, action) => {
+const todos = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_TODOS: {

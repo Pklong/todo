@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import TodoList from './todo_list';
 import { allTodos } from '../../reducers/todos_reducer';
 import {
-  requestTodos,
+  fetchTodos,
   createTodo,
   toggleTodo,
   destroyTodo,
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestTodos: () => dispatch(requestTodos()),
+  fetchTodos: () => dispatch(fetchTodos()),
   createTodo: (t) => dispatch(createTodo(t)),
   toggleTodo: (t) => dispatch(toggleTodo(t)),
   destroyTodo: (t) => dispatch(destroyTodo(t)),

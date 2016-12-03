@@ -1,14 +1,12 @@
-export const fetchTodos = (success, error) => {
-  $.ajax({
+export const fetchTodos = () => {
+  return $.ajax({
     method: 'get',
     url: 'api/todos',
-    success,
-    error,
   });
 };
 
 export const createTodo = (todo, success, error) => {
-  $.ajax({
+  return $.ajax({
     method: 'post',
     url: 'api/todos',
     data: todo,
@@ -19,7 +17,7 @@ export const createTodo = (todo, success, error) => {
 
 export const updateTodo = (todo, success, error) => {
   todo.done = !todo.done;
-  $.ajax({
+  return $.ajax({
     method: 'patch',
     url: `api/todos/${todo.id}`,
     data: { todo },
@@ -29,7 +27,7 @@ export const updateTodo = (todo, success, error) => {
 };
 
 export const destroyTodo = (todoId, success, error) => {
-  $.ajax({
+  return $.ajax({
     method: 'delete',
     url: `api/todos/${todoId}`,
     success,
