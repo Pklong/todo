@@ -8,10 +8,7 @@ export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const DESTROY_TODO = 'DESTROY_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
 
-export const requestTodos = () => ({
-  type: REQUEST_TODOS,
-});
-
+// sync
 export const receiveTodos = (todos) => ({
   type: RECEIVE_TODOS,
   todos,
@@ -25,6 +22,11 @@ export const receiveTodo = (todo) => ({
 export const removeTodo = (todo) => ({
   type: REMOVE_TODO,
   todo,
+});
+
+// async
+export const requestTodos = () => ({
+  type: REQUEST_TODOS,
 });
 
 export const createTodo = (todo) => ({

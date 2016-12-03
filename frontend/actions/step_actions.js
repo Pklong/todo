@@ -8,11 +8,7 @@ export const TOGGLE_STEP = 'TOGGLE_STEP';
 export const DESTROY_STEP = 'DESTROY_STEP';
 export const REMOVE_STEP = 'REMOVE_STEP';
 
-export const requestSteps = (todoId) => ({
-  type: REQUEST_STEPS,
-  todoId,
-});
-
+// sync
 export const receiveSteps = (steps) => ({
   type: RECEIVE_STEPS,
   steps,
@@ -21,6 +17,17 @@ export const receiveSteps = (steps) => ({
 export const receiveStep = (step) => ({
   type: RECEIVE_STEP,
   step,
+});
+
+export const removeStep = (step) => ({
+  type: REMOVE_STEP,
+  step,
+});
+
+// async
+export const requestSteps = (todoId) => ({
+  type: REQUEST_STEPS,
+  todoId,
 });
 
 export const createStep = (step) => ({
@@ -33,10 +40,6 @@ export const toggleStep = (step) => ({
   step,
 });
 
-export const removeStep = (step) => ({
-  type: REMOVE_STEP,
-  step,
-});
 export const destroyStep = (stepId) => ({
   type: DESTROY_STEP,
   stepId,
