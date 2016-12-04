@@ -8,6 +8,8 @@ import StepList from '../step_list/step_list';
 class TodoDetailView extends React.Component {
   constructor(props) {
     super(props);
+    const { destroyTodo, todo } = this.props;
+    this.destroyTodo = destroyTodo.bind(null, todo.id);
   }
 
   componentDidMount() {
@@ -23,7 +25,7 @@ class TodoDetailView extends React.Component {
         <StepList
           todoId={todo.id}
         />
-        <button onClick={destroyTodo.bind(null, todo)}>
+      <button onClick={this.destroyTodo}>
           Delete Todo
         </button>
       </div>
@@ -32,7 +34,7 @@ class TodoDetailView extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  destroyTodo: (t) => dispatch(destroyTodo(t)),
+  destroyTodo: (tId) => dispatch(destroyTodo(tId)),
   requestSteps: (id) => dispatch(requestSteps(id)),
 });
 

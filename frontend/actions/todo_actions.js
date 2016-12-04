@@ -30,21 +30,27 @@ export const removeTodo = (todo) => ({
 export const fetchTodos = () => {
   return (dispatch) => {
     return APIUtil.fetchTodos()
-                  .then(todos => dispatch(receiveTodos(todos)))
+                  .then(todos => dispatch(receiveTodos(todos)));
   }
 }
 
-export const createTodo = (todo) => ({
-  type: CREATE_TODO,
-  todo,
-});
+export const createTodo = (t) => {
+  return (dispatch) => {
+    return APIUtil.createTodo(t)
+                  .then(todo => dispatch(receiveTodo(todo)));
+  }
+};
 
-export const toggleTodo = (todo) => ({
-  type: TOGGLE_TODO,
-  todo,
-});
+export const toggleTodo = (t) => {
+  return (dispatch) => {
+    return APIUtil.updateTodo(t)
+                  .then(todo => dispatch(receiveTodo(todo)));
+  }
+};
 
-export const destroyTodo = (todo) => ({
-  type: DESTROY_TODO,
-  todo,
-});
+export const destroyTodo = (todoId) => {
+  return (dispatch) => {
+    return APIUtil.destroyTodo(todoId)
+                  .then(todo => dispatch(removeTodo(todo)));
+  }
+};

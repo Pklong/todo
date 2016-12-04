@@ -4,27 +4,10 @@ import {
   REMOVE_TODO,
 } from '../actions/todo_actions';
 
-import merge from 'lodash/merge';
-
-const defaultState = {
-  1: {
-    id: 1,
-    title: 'learn redux',
-    body: 'splash some rails in there',
-    done: false,
-  },
-  2: {
-    id: 2,
-    title: 'make a stew',
-    body: 'use soup bone',
-    done: true,
-  },
-};
-
 const todo = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_TODO: {
-      const newTodo = merge({}, action.todo);
+      const newTodo = Object.assign({}, action.todo);
       return newTodo;
     }
 
@@ -45,13 +28,13 @@ const todos = (state = {}, action) => {
     }
 
     case RECEIVE_TODO: {
-      const newState = merge({}, state);
+      const newState = Object.assign({}, state);
       newState[action.todo.id] = todo(null, action);
       return newState;
     }
 
     case REMOVE_TODO: {
-      const newState = merge({}, state);
+      const newState = Object.assign({}, state);
       delete newState[action.todo.id];
       return newState;
     }
