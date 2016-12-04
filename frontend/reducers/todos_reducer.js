@@ -35,7 +35,7 @@ const todos = (state = {}, action) => {
 
     case REMOVE_TODO: {
       const newState = Object.assign({}, state);
-      delete newState[action.todo.id];
+      delete newState[action.todoId];
       return newState;
     }
 
@@ -44,6 +44,6 @@ const todos = (state = {}, action) => {
   }
 };
 
-export const allTodos = (state) => Object.keys(state.todos).map(t => state.todos[t]);
+export const allTodos = (todos) => Object.keys(todos).map(t => todos[t]);
 
 export default todos;

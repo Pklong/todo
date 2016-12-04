@@ -21,9 +21,9 @@ export const receiveTodo = (todo) => ({
   todo,
 });
 
-export const removeTodo = (todo) => ({
+export const removeTodo = (todoId) => ({
   type: REMOVE_TODO,
-  todo,
+  todoId,
 });
 
 // async
@@ -51,6 +51,6 @@ export const toggleTodo = (t) => {
 export const destroyTodo = (todoId) => {
   return (dispatch) => {
     return APIUtil.destroyTodo(todoId)
-                  .then(todo => dispatch(removeTodo(todo)));
+                  .then(todoId => dispatch(removeTodo(todoId)));
   }
 };

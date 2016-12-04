@@ -9,7 +9,7 @@ import {
 } from '../../actions/todo_actions';
 
 const mapStateToProps = (state) => ({
-  todos: allTodos(state),
+  todos: allTodos(state.todos),
 });
 
 const mapDispatchToProps = (dispatch) => ({

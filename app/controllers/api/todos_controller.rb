@@ -10,9 +10,9 @@ class Api::TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
-    @todo.destroy
-    render json: @todo
+    todo = Todo.find(params[:id])
+    todo.destroy
+    render json: todo[:id]
   end
 
   def index

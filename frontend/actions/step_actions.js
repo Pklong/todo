@@ -1,3 +1,5 @@
+import * as StepAPIUtil from '../util/step_api_util';
+
 export const REQUEST_STEPS = 'REQUEST_STEPS';
 export const RECEIVE_STEPS = 'RECEIVE_STEPS';
 
@@ -19,28 +21,36 @@ export const receiveStep = (step) => ({
   step,
 });
 
-export const removeStep = (step) => ({
+export const removeStep = (stepId) => ({
   type: REMOVE_STEP,
-  step,
+  stepId,
 });
 
 // async
-export const requestSteps = (todoId) => ({
-  type: REQUEST_STEPS,
-  todoId,
-});
+export const requestSteps = (todoId) => {
+  return (dispatch) => {
+    return StepAPIUtil.fetchSteps(todoId)
+                      .then(steps => dispatch(receiveSteps(steps)));
+  }
+};
 
-export const createStep = (step) => ({
-  type: CREATE_STEP,
-  step,
-});
+export const createStep = (step) => {
+  return (dispatch) => {
+    return StepAPIUtil.createStep(step)
+                      .then(s => dispatch(receiveStep(s)));
+  }
+};
 
-export const toggleStep = (step) => ({
-  type: TOGGLE_STEP,
-  step,
-});
+export const toggleStep = (step) => {
+  return (dispatch) => {
+    return StepAPIUtil.updateStep(step)
+                      .then(s => dispatch(receiveStep(s)));
+  }
+};
 
-export const destroyStep = (stepId) => ({
-  type: DESTROY_STEP,
-  stepId,
-});
+export const destroyStep = (stepId) => {
+  return (dispatch) => {
+    return StepAPIUtil.destroyStep(stepId)
+                      .then(sId => dispatch(removeStep(sId)));
+  }
+};

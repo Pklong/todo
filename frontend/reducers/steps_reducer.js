@@ -8,30 +8,23 @@ import merge from 'lodash/merge';
 
 const stepsReducer = (state = {}, action) => {
   Object.freeze(state);
+  const newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_STEPS: {
       const { steps } = action;
-      const newState = merge({}, state);
-      steps.forEach(s => {
-        const { todo_id: todoId, id: stepId } = s;
-        newState[todoId] = newState[todoId] || {};
-        newState[todoId][stepId] = s;
-      });
+      steps.forEach(s => newState[s.id] = s);
       return newState;
     }
 
     case RECEIVE_STEP: {
-      const newState = merge({}, state);
-      const { todo_id: todoId, id: stepId } = action.step;
-      newState[todoId] = newState[todoId] || {};
-      newState[todoId][stepId] = action.step;
+      const { step } = action;
+      newState[step.id] = step;
       return newState;
     }
 
     case REMOVE_STEP: {
-      const { todo_id: todoId, id: stepId } = action.step;
-      const newState = merge({}, state);
-      delete newState[todoId][stepId];
+      const { stepId } = action;
+      delete newState[stepId];
       return newState;
     }
 
@@ -41,8 +34,9 @@ const stepsReducer = (state = {}, action) => {
 };
 
 export const todoSteps = (steps, todoId) => {
-  if (!steps[todoId]) return [];
-  return Object.keys(steps[todoId]).map(s => steps[todoId][s]);
+  return Object.keys(steps)
+               .map(s => steps[s])
+               .filter(s => s.todo_id === todoId);
 };
 
 export default stepsReducer;

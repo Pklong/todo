@@ -10,9 +10,9 @@ class Api::StepsController < ApplicationController
   end
 
   def destroy
-    @step = Step.find(params[:id])
-    @step.destroy
-    render json: @step
+    step = Step.find(params[:id])
+    step.destroy
+    render json: step[:id]
   end
 
   def index
